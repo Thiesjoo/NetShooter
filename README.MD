@@ -27,6 +27,9 @@ Abilties are general and can be used at any time. (They have a range of course)
 
 *The rest of kali linux tools*
 
+### UI
+You have just the normal pokemon UI, but you also have a terminal.
+In the terminal you can run all kinds 
 
 ### Fighting
 You have different machines(Pokemons) and they have sub-abilities.
