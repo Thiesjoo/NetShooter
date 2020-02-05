@@ -3,33 +3,43 @@ extends "objects.gd"
 class_name Pawn
 
 onready var Grid = get_parent()
+var walk_time = 0.3
 
 func _ready():
 	update_look_direction(Vector2(1, 0))
 
-func update_look_direction(direction):
-	$Pivot/Sprite.rotation = direction.angle()
+func update_look_direction(dir):
+	$Pivot/AnimatedSprite.play(vector_to_direction(dir))
+	$Pivot/AnimatedSprite.advance()
+	$Pivot/AnimatedSprite.stop()
 
-func move_to(target_position):
+func move_to(target_position, dir):
 	set_process(false)
-	$AnimationPlayer.play("walk")
+	$Pivot/AnimatedSprite.play(vector_to_direction(dir))
 
-	# Move the node to the target cell instantly,
-	# and animate the sprite moving from the start to the target cell
-	var move_direction = (target_position - position).normalized()
-	$Tween.interpolate_property($Pivot, "position", - move_direction * 32, Vector2(), $AnimationPlayer.current_animation_length, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	position = target_position
-
+	# The node is moved as a whole. This is too also move the children in a Tween fashion
+	$Tween.interpolate_property(self, "position", position, target_position, walk_time, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
 
-	# Stop the function execution until the animation finished
-	yield($AnimationPlayer, "animation_finished")
+	# Stop the function execution until the tween finished
+	yield($Tween, "tween_completed")
+	$Pivot/AnimatedSprite.stop()
+#	$Pivot/AnimatedSprite.frame = 0
 	
 	set_process(true)
 
 
 func bump():
-	set_process(false)
-	$AnimationPlayer.play("bump")
-	yield($AnimationPlayer, "animation_finished")
-	set_process(true)
+	#TODO: Play audio effect
+	pass
+
+func vector_to_direction(dir):
+	if (dir == Vector2(0,1)):
+		return "down"
+	elif (dir == Vector2(0,-1)):
+		return "up"
+	elif (dir == Vector2(1,0)):
+		return "right"
+	elif (dir == Vector2(-1,0)):
+		return "left"
+	return ""

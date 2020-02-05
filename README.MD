@@ -38,7 +38,7 @@ Each chunk creates a route between POI's and sides, so it can connect with other
 You can invest XP into your abilities to level them. They will get faster, give better result, 
 
 #### DeviceXP
-
+Invest XP into gym's to upgrade traits
 
 ### Abilities
 Abilties are general and can be used at any time. (They have a range of course)
@@ -51,7 +51,7 @@ Abilties are general and can be used at any time. (They have a range of course)
 You have just the normal pokemon UI, but you also have a terminal.
 In the terminal you can run all kinds commands.
 #### Commands
-* ls = list all machine's
+* ls = list all devices's
 * 
 
 ### Fighting
@@ -116,3 +116,9 @@ Every Machine also has levels which represent the hardware(Better cpu with highe
     * Rooted
     * 4.4, 6, 7, 8, 10
     
+
+## Credits
+* Game art
+    * 
+* Other
+    * [Game engine](http://godotengine.org/)

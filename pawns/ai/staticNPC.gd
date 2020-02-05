@@ -1,4 +1,4 @@
-extends "../objects.gd"
+extends "../pawn.gd"
 
 var Target = null
 export var rotationLength = 10
@@ -10,15 +10,12 @@ func _ready():
 
 func _process(delta):
 	var direction = get_direction_to_target()
-	$Pivot/Sprite.rotation = lerp_angle($Pivot/Sprite.rotation, direction, rotationSpeed)
+	var x = int(round(cos(direction)))
+	var y = int(round(sin(direction)))
+	if (x):
+		update_look_direction(Vector2(x,0))
+	else:
+		update_look_direction(Vector2(0,y))
 
 func get_direction_to_target():
-	return Vector2(1, 0).angle_to( Target.position - self.position)
-
-func lerp_angle(from, to, weight):
-	return from + short_angle_dist(from, to) * weight
-
-func short_angle_dist(from, to):
-	var max_angle = PI * 2
-	var difference = fmod(to - from, max_angle)
-	return fmod(2 * difference, max_angle) - difference
+	return Vector2(1, 0).angle_to(Target.position - self.position)

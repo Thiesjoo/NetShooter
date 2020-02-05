@@ -1,7 +1,8 @@
 #SHould randomly move around a point
 extends "../pawn.gd"
 
-var locations= [[0,1], [1,1], [1,0], [0,-1],[-1,-1], [-1,0], [-1,1], [1, -1]]
+#var locations= [[0,1], [1,1], [1,0], [0,-1],[-1,-1], [-1,0], [-1,1], [1, -1]]
+var locations= [[0,1], [1,0], [0,-1],[-1,0]]
 var Target = null
 
 func _ready():
@@ -16,13 +17,12 @@ func _process(delta):
 
 	var target_position = Grid.request_move(self, input_direction)
 	if target_position:
-		move_to(target_position)
+		move_to(target_position, input_direction)
 	else:
 		bump()
 
 func get_input_direction():
 	var currentVector = null
-#	print(Vector2(1, 0).angle_to( Target.position - self.position))
 
 	for location in locations:
 		currentVector = Vector2(location[0], location[1])
