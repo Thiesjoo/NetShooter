@@ -1,8 +1,15 @@
 # NetShooter
-#### Made by: Thies Nieborg. Some ideas by: Jacco V N.
+#### Made by: Thies Nieborg. Some ideas by: Jacco v N.
 
 ## Original idea
 You spawn in a map which is grid based. There are several point of interest(Pokemon-gyms).
+You are a tech nerd and you start with a machine. You choose between 3 standard devices (Galaxy s5, Ipohne 6, Nokia 3310)
+1. When you choose your phone you start with explore the map.
+2. FInd hacker
+3. Fight the hacker
+4. Get XP from defeated device
+5. Level up your device
+
 
 ### Techincal
 The map is divided in chunks(at least 1 POI per chunk). Each chunk creates a route between POI and sides, so it can connect
@@ -15,7 +22,7 @@ The map is divided in chunks(at least 1 POI per chunk). Each chunk creates a rou
   
 * Gym's
   * Update-gym: Update your pokemon's(They will get better defense)
-  * DownloadMoreRam: Better speed
+  * DownloadMoreRam: Better capacity(More storage for attacks)
   * BatteryRefresh: pp in pokemon
 
 * Other
@@ -23,7 +30,11 @@ The map is divided in chunks(at least 1 POI per chunk). Each chunk creates a rou
 
 
 ### XP
+#### PlayerXP
 You can invest XP into your abilities to level them. They will get faster, give better result, 
+
+#### DeviceXP
+
 
 ### Abilities
 Abilties are general and can be used at any time. (They have a range of course)
@@ -53,17 +64,21 @@ Every Machine also has levels which represent the hardware(Better cpu with highe
     * Cryptic errors
 
 * Windows
-    * Common
+    * Uncommon
     * Slow
     * Lots of evolutions
     * Easy to customize
     * Crashes often
 
-* MacOS/IOS
+* MacOS
     * Rare
     * Versatile
     * Easy to use
-    * 
+    * Gets strength boost when coupled with IOS
+   
+ * IOS
+    * Uncommon
+    * Gets strength boost when coupled with MacOS
     
 * Android
     * Common
