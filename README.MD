@@ -9,24 +9,28 @@ You are a tech nerd and you start with a machine. You choose between 3 standard 
 3. Fight the hacker
 4. Get XP from defeated device
 5. Level up your device
-
+6. Start exploring further
 
 ### Techincal
-The map is divided in chunks(at least 1 POI per chunk). Each chunk creates a route between POI and sides, so it can connect
+The map is divided in chunks(32x32 tiles). It is stored in JSON and is loaded into the tilemap.
+Stored like: {x: 0, y: 0, data: [[0,0,0,...], ...], amountPoi: 4, conn: [0,1,2]}
+Conn is connection with other chunks. 0=north, 1=east, 2=south, 3=west
+Each chunk creates a route between POI's and sides, so it can connect with other chunks.
+
 
 ### POI Idea's
 * People
-  * NPC's(You can trade or fight with them)
-  * Hackers (You can attack)
-  * Engineers( Different types: Network, Electrical)
+  * Hackers (Battle them for XP, Have drones circling around them(You can dodge or fight them) to protect)
+  * Engineers(Ask them to help you. Different types: Mechanical(Repair devices), Chemical(Increase teamwork), Civil(Increase the likelyhood that other NPC will help you), Management(Incease carrying capacity), Geotechnical(Increase kernel stability?), Electrical(Increase damage))
   
 * Gym's
-  * Update-gym: Update your pokemon's(They will get better defense)
+  * Updateinator: Update your pokemon's(They will get better defense)
   * DownloadMoreRam: Better capacity(More storage for attacks)
-  * BatteryRefresh: pp in pokemon
+  * BatteryRefresh: Get extra energy for device
+  * 
 
 * Other
-  * Rewards(Free hidden rewards which will earn you xp)
+  * Rewards(Free hidden items which will earn you xp, money or energy)
 
 
 ### XP
