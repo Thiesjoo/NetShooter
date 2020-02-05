@@ -1,18 +1,23 @@
 # NetShooter
+#### Made by: Thies Nieborg. Some ideas by: Jacco V N.
 
 ## Original idea
 You spawn in a map which is grid based. There are several point of interest(Pokemon-gyms).
+
 ### Techincal
 The map is divided in chunks(at least 1 POI per chunk). Each chunk creates a route between POI and sides, so it can connect
 
 ### POI Idea's
 * People
   * NPC's(You can trade or fight with them)
-  * Attackers(They will attack you
+  * Hackers (You can attack)
+  * Engineers( Different types: Network, Electrical)
+  
 * Gym's
   * Update-gym: Update your pokemon's(They will get better defense)
   * DownloadMoreRam: Better speed
-  * 
+  * BatteryRefresh: pp in pokemon
+
 * Other
   * Rewards(Free hidden rewards which will earn you xp)
 
@@ -29,26 +34,50 @@ Abilties are general and can be used at any time. (They have a range of course)
 
 ### UI
 You have just the normal pokemon UI, but you also have a terminal.
-In the terminal you can run all kinds 
+In the terminal you can run all kinds commands.
+#### Commands
+* ls = list all machine's
+* 
 
 ### Fighting
-You have different machines(Pokemons) and they have sub-abilities.
+You have different types machines(Pokemons) and they have sub-abilities.
 You also have evolutions: Linux(Different Distro's), Windows( WIndows 98, WIndows, 7), MacOS()
 
 Every Machine also has levels which represent the hardware(Better cpu with higher level)
 
-### Machines
+### Machine Types
 * Linux
+    * Legendary
     * Very fast
     * You have to be high-level to use it correctly
-    * Cryptidc errors
+    * Cryptic errors
 
 * Windows
+    * Common
     * Slow
-    * Can be used by anyone
+    * Lots of evolutions
+    * Easy to customize
     * Crashes often
 
-* MacOS
+* MacOS/IOS
+    * Rare
+    * Versatile
+    * Easy to use
+    * 
+    
+* Android
+    * Common
+    * Lots of evolutions
+    * Easy to use
+    
+### Example Machines
+* Hackintosh( Windows machine with MACOS type)
+* Surface laptop
+* Macbook air
+* Samsung phone
+* Iphone 11
+* $Rooted android
+* Galaxy fold
 
 
 ### Evolutions
@@ -59,3 +88,12 @@ Every Machine also has levels which represent the hardware(Better cpu with highe
 
 * Windows
     * Different windows versions
+    
+* Macos/IOS
+    * MacOs Catilane
+    * Macos
+    
+* Android
+    * Rooted
+    * 4.4, 6, 7, 8, 10
+    
