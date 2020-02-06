@@ -3,17 +3,26 @@ extends "objects.gd"
 class_name Pawn
 
 onready var Grid = get_parent()
-var walk_time = 0.3
+var walk_time = 0.4
+var current_direction = Vector2(0,0)
 
 func _ready():
 	update_look_direction(Vector2(1, 0))
 
-func update_look_direction(dir):
-	$Pivot/AnimatedSprite.play(vector_to_direction(dir))
-	$Pivot/AnimatedSprite.advance()
-	$Pivot/AnimatedSprite.stop()
 
-func move_to(target_position, dir):
+#Player/enemy code
+
+func update_look_direction(dir):
+	var textDir = vector_to_direction(dir)
+	if (textDir != $Pivot/AnimatedSprite.get_current()):
+		current_direction = dir
+		$Pivot/AnimatedSprite.play(textDir)
+		$Pivot/AnimatedSprite.stop()
+
+func move_to(dir):
+	var target_position = Grid.update_pawn(self, dir)
+
+
 	set_process(false)
 	$Pivot/AnimatedSprite.play(vector_to_direction(dir))
 
@@ -24,14 +33,13 @@ func move_to(target_position, dir):
 	# Stop the function execution until the tween finished
 	yield($Tween, "tween_completed")
 	$Pivot/AnimatedSprite.stop()
-#	$Pivot/AnimatedSprite.frame = 0
 	
 	set_process(true)
 
 
 func bump():
 	#TODO: Play audio effect
-	pass
+	print("BUMP!")
 
 func vector_to_direction(dir):
 	if (dir == Vector2(0,1)):

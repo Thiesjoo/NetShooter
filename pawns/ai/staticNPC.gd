@@ -1,17 +1,22 @@
 extends "../pawn.gd"
 
 var Target = null
-export var rotationLength = 10
-export var rotationSpeed = 0.1
+export var look_at_player = true
+var prevAngle = 0
 
 func _ready():
-	#Attacker's circle around the parent, till they find a player
+	#Static NPC's always look at the player
 	Target = get_parent().get_node("Player")
 
 func _process(delta):
-	var direction = get_direction_to_target()
-	var x = int(round(cos(direction)))
-	var y = int(round(sin(direction)))
+	if (!look_at_player):
+		return
+	var angle = get_direction_to_target()
+	if (angle == prevAngle):
+		return
+	prevAngle = angle
+	var x = int(round(cos(angle)))
+	var y = int(round(sin(angle)))
 	if (x):
 		update_look_direction(Vector2(x,0))
 	else:

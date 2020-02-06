@@ -88,5 +88,5 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Pivot"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 13 )
-animation = "right"
+animation = "up"
 speed_scale = 3.0

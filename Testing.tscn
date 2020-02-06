@@ -1,13 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://tilesets/grid/TileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://grid/grid.gd" type="Script" id=3]
-[ext_resource path="res://Game/Game.gd" type="Script" id=5]
 [ext_resource path="res://pawns/objects.gd" type="Script" id=7]
 [ext_resource path="res://tilesets/powerups/BronzeHearth.tscn" type="PackedScene" id=11]
 
 [node name="Game" type="Node"]
-script = ExtResource( 5 )
 
 [node name="Grid" type="TileMap" parent="."]
 position = Vector2( -3, -2 )

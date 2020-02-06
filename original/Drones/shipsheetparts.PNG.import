@@ -2,29 +2,29 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pokemon-sprite-trainer-png-original.png-cc5b1fc013d96b1c53f6c512639191b1.stex"
+path="res://.import/shipsheetparts.PNG-49cc248de80c4d5a8f1248f81750acaf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://original/pokemon-sprite-trainer-png-original.png"
-dest_files=[ "res://.import/pokemon-sprite-trainer-png-original.png-cc5b1fc013d96b1c53f6c512639191b1.stex" ]
+source_file="res://original/Drones/shipsheetparts.PNG"
+dest_files=[ "res://.import/shipsheetparts.PNG-49cc248de80c4d5a8f1248f81750acaf.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

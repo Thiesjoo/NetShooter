@@ -1,21 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://pawns/player/player.gd" type="Script" id=1]
 [ext_resource path="res://pawns/sprites/0trainer.png" type="Texture" id=2]
 [ext_resource path="res://pawns/sprites/spriteloader.gd" type="Script" id=3]
 
-[node name="Player" type="Node2D"]
-position = Vector2( 0.12851, -0.128513 )
-z_index = 1
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30, 30 )
+
+[node name="Player" type="Area2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
-type = 0
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Pivot" type="Position2D" parent="."]
+position = Vector2( 0.12851, -0.128513 )
 
 [node name="AnimatedSprite" type="Sprite" parent="Pivot"]
 scale = Vector2( 2, 2 )
@@ -24,3 +22,7 @@ vframes = 4
 hframes = 3
 frame = 11
 script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+[connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
