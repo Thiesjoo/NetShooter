@@ -8,7 +8,7 @@ func _ready():
 	#Static NPC's always look at the player
 	Target = get_parent().get_node("Player")
 
-func _process(delta):
+func _process(_delta):
 	if (!look_at_player):
 		return
 	var angle = get_direction_to_target()

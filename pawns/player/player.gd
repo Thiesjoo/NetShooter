@@ -8,7 +8,7 @@ func _ready():
 	camera.current = true
 	add_child(camera)
 
-func _process(delta):
+func _process(_delta):
 	if (interacting):
 		if (Input.is_action_pressed("ui_cancel")):
 			interacting = false

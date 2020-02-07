@@ -15,9 +15,10 @@ func _process(delta):
 		return
 	update_look_direction(input_direction)
 
-	var target_position = Grid.request_move(self, input_direction)
-	if target_position:
-		move_to(target_position, input_direction)
+	var target = Grid.request_move(self, input_direction)
+	if (target):
+		if ("move" in target):
+			move_to(input_direction)
 	else:
 		bump()
 

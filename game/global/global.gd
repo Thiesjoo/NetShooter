@@ -3,7 +3,7 @@ extends Node
 func _ready():
 	print("Global game script has started")
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed("ui_end"):
 		exit()
 

@@ -19,4 +19,4 @@ script = ExtResource( 3 )
 [node name="Coin" parent="Grid" instance=ExtResource( 11 )]
 position = Vector2( 97.6889, 161.344 )
 script = ExtResource( 7 )
-type = 4
+type = 5
