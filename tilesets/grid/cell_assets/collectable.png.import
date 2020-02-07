@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy.png-958bbc0958a83c2ca61886de3b69e3b6.stex"
+path="res://.import/collectable.png-5638681eef5e8367c49af91160f62c24.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tilesets/grid/assets/enemy.png"
-dest_files=[ "res://.import/enemy.png-958bbc0958a83c2ca61886de3b69e3b6.stex" ]
+source_file="res://tilesets/grid/cell_assets/collectable.png"
+dest_files=[ "res://.import/collectable.png-5638681eef5e8367c49af91160f62c24.stex" ]
 
 [params]
 

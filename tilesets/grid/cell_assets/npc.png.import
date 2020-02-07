@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/path.png-40a7032deb7bab105447d4c4ce6394f1.stex"
+path="res://.import/npc.png-78bd8dbe22395741de0f397ce57afb94.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tilesets/grid/assets/path.png"
-dest_files=[ "res://.import/path.png-40a7032deb7bab105447d4c4ce6394f1.stex" ]
+source_file="res://tilesets/grid/cell_assets/npc.png"
+dest_files=[ "res://.import/npc.png-78bd8dbe22395741de0f397ce57afb94.stex" ]
 
 [params]
 
@@ -31,4 +31,4 @@ process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true
-svg/scale=4.0
+svg/scale=1.0

@@ -1,6 +1,12 @@
 extends TileMap
 
-enum { EMPTY = -1, PLAYER, OBSTACLE, PATH, NPC, ATTACKER, COIN}
+enum { EMPTY = -1, 
+PLAYER, OBSTACLE, 
+NPC, ATTACKER, 
+COLLECTABLE,
+DEVICE, GYM
+TILE
+}
 var extraFunc
 
 func _ready():
@@ -30,9 +36,9 @@ func request_move(pawn, direction):
 	
 	var cell_target_type = get_cellv(cell_target)
 	match cell_target_type:
-		EMPTY, PATH:
+		EMPTY, TILE:
 			return {"move": true, }
-		COIN:
+		COLLECTABLE:
 			print("Player should get xp or money")
 			return {"collectable": true, "pos": cell_target }
 		NPC:
