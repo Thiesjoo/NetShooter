@@ -36,8 +36,9 @@ global="*res://game/global/global.gd"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/width=3840
+window/size/height=2160
+window/size/resizable=false
 window/size/borderless=true
 window/dpi/allow_hidpi=true
 window/vsync/use_vsync=false
@@ -77,4 +78,6 @@ ui_end={
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0.176471, 0.282353, 0.243137, 1 )
 environment/default_environment="res://default_env.tres"

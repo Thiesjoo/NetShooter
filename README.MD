@@ -17,6 +17,11 @@ Stored like: {x: 0, y: 0, data: [[0,0,0,...], ...], amountPoi: 4, conn: [0,1,2]}
 Conn is connection with other chunks. 0=north, 1=east, 2=south, 3=west
 Each chunk creates a route between POI's and sides, so it can connect with other chunks.
 
+MapGrid is for all mapping tiles: path, trees, bushes
+PlayerGrid is for NPC's, the player and collectable's (And debug obstacle's)
+
+Device's, gym's  will not be grid based
+
 
 ### POI Idea's
 * People
@@ -121,5 +126,6 @@ Every Machine also has levels which represent the hardware(Better cpu with highe
 * Game art
     * [UI](https://lucapixel.itch.io/ultimate-kit-pixel-art) - *License: [(CC BY 3.0)](https://creativecommons.org/licenses/by/3.0/)*
     * Drones - Stephen Challener (Redshrike), hosted by OpenGameArt.org
+    * [Map tiles from Alistair](https://fanart.pokefans.net/tutorials/mapping/tilesets)
 * Other
     * [Game engine](http://godotengine.org/)

@@ -3,7 +3,7 @@ extends "objects.gd"
 class_name Pawn
 
 onready var Grid = get_parent()
-var walk_time = 0.4
+var walk_time = 0.01
 var current_direction = Vector2(0,0)
 
 func _ready():
@@ -19,21 +19,15 @@ func update_look_direction(dir):
 		$Pivot/AnimatedSprite.play(textDir)
 		$Pivot/AnimatedSprite.stop()
 
-func move_to(dir):
-	var target_position = Grid.update_pawn(self, dir)
-
-
-	set_process(false)
+func move_to(dir, pos):
 	$Pivot/AnimatedSprite.play(vector_to_direction(dir))
-
+	set_process(false)
 	# The node is moved as a whole. This is too also move the children in a Tween fashion
-	$Tween.interpolate_property(self, "position", position, target_position, walk_time, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.interpolate_property(self, "position", position, pos, walk_time, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
 
 	# Stop the function execution until the tween finished
 	yield($Tween, "tween_completed")
-	$Pivot/AnimatedSprite.stop()
-	
 	set_process(true)
 
 

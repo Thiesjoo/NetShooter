@@ -5,7 +5,7 @@
 [ext_resource path="res://pawns/sprites/spriteloader.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30, 30 )
+extents = Vector2( 15, 15 )
 
 [node name="Player" type="Area2D"]
 script = ExtResource( 1 )
@@ -16,7 +16,7 @@ script = ExtResource( 1 )
 position = Vector2( 0.12851, -0.128513 )
 
 [node name="AnimatedSprite" type="Sprite" parent="Pivot"]
-scale = Vector2( 2, 2 )
+z_index = 10
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 3
@@ -26,3 +26,4 @@ script = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 [connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
+[connection signal="area_shape_entered" from="." to="." method="_on_Player_area_shape_entered"]
