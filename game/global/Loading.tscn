@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fonts/Large_SemiBold.tres" type="DynamicFont" id=1]
+[ext_resource path="res://game/global/assets/loading_progress.png" type="Texture" id=2]
+[ext_resource path="res://game/global/assets/loading_under.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="LoadingScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -313.5
+margin_top = -121.5
+margin_right = 313.5
+margin_bottom = 121.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_right = 627.0
+margin_bottom = 243.0
+
+[node name="Loading" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 627.0
+margin_bottom = 175.0
+custom_fonts/font = ExtResource( 1 )
+text = "Loading ..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 183.0
+margin_right = 627.0
+margin_bottom = 243.0
+
+[node name="Progress" type="TextureProgress" parent="CenterContainer/VBoxContainer/CenterContainer"]
+margin_left = 79.0
+margin_right = 547.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 468, 60 )
+max_value = 1.0
+step = 0.01
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fade_in = SubResource( 1 )
+anims/fade_out = SubResource( 2 )

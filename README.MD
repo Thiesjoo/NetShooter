@@ -124,7 +124,6 @@ Every Machine also has levels which represent the hardware(Better cpu with highe
 
 ## Credits
 * Game art
-    * [UI](https://lucapixel.itch.io/ultimate-kit-pixel-art) - *License: [(CC BY 3.0)](https://creativecommons.org/licenses/by/3.0/)*
     * Drones - Stephen Challener (Redshrike), hosted by OpenGameArt.org
     * [Map tiles from Alistair](https://fanart.pokefans.net/tutorials/mapping/tilesets)
 * Other

@@ -9,6 +9,11 @@ TILE
 var extraFunc
 
 func _ready():
+	if (!Global.game_data):
+		Scene_loader.switch_scene("main_menu")
+		OS.alert("Something went wrong")
+		return
+	
 	extraFunc = preload("res://grid/mapgen/grid_func.gd").new()
 	add_child(extraFunc.add_trainer("Player", Vector2(200,200), PLAYER, 0, "player/player.gd"))
 	add_child(extraFunc.add_trainer("testing", Vector2(100,200), NPC, 4, "ai/staticNPC.gd"))
@@ -26,7 +31,7 @@ func generate_map():
 	var noise = OpenSimplexNoise.new()
 
 	# Configure
-	noise.seed = randi()
+	noise.seed = Global.game_data.map_seed
 	noise.octaves = 1
 	noise.period = 30.0
 	noise.persistence = 0.8
@@ -39,7 +44,7 @@ func generate_map():
 			if a < 0.3 and a > 0.05:
 #				print("Setting cell")
 				set_cellv(Vector2(x,y),6)
-			elif a < 0.5:
+			else:
 				set_cellv(Vector2(x,y), 5)
 	update_bitmask_region(Vector2(0,0), map_size)
 	
@@ -60,6 +65,7 @@ func request_move(pawn, direction):
 		EMPTY:
 			return {"move": true, "pos": map_to_world(cell_target) }
 		COLLECTABLE:
+			#TODO: Port this to Collision
 			print("Player should get xp or money")
 			return {"collectable": true, "pos": map_to_world(cell_target) }
 		NPC:

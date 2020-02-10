@@ -3,8 +3,9 @@ extends "objects.gd"
 class_name Pawn
 
 onready var Grid = get_parent()
-var walk_time = 0.01
+var walk_time = 0.3
 var current_direction = Vector2(0,0)
+signal move_finished
 
 func _ready():
 	update_look_direction(Vector2(1, 0))
@@ -20,6 +21,7 @@ func update_look_direction(dir):
 		$Pivot/AnimatedSprite.stop()
 
 func move_to(dir, pos):
+
 	$Pivot/AnimatedSprite.play(vector_to_direction(dir))
 	set_process(false)
 	# The node is moved as a whole. This is too also move the children in a Tween fashion
@@ -28,7 +30,9 @@ func move_to(dir, pos):
 
 	# Stop the function execution until the tween finished
 	yield($Tween, "tween_completed")
+	emit_signal("move_finished")
 	set_process(true)
+
 
 
 func bump():
@@ -45,3 +49,7 @@ func vector_to_direction(dir):
 	elif (dir == Vector2(-1,0)):
 		return "left"
 	return ""
+
+
+func _on_Player_area_entered(area):
+	print("Collided with: ", area)
