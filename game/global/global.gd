@@ -17,6 +17,7 @@ export var current_game_id = NAN
 
 func _ready():
 	randomize()
+	self.set_pause_mode(2)
 	print("User save dir: ", OS.get_user_data_dir())
 	print("Global game script has started")
 	load_game_from_file()
@@ -87,8 +88,6 @@ func new_game():
 	"stage": 1,
 	"inventory": {},
 	"explored_chunks": []}
-	games.push_front(game_data)
-	load_game(0)
 
 func sort_games():
 	print(games)

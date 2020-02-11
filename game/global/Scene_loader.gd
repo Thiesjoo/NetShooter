@@ -7,12 +7,12 @@ var current_scene = null
 onready var loading_scene = preload("res://game/global/Loading.tscn").instance()
 
 func _ready():
+	self.set_pause_mode(2)
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
 
 func _unhandled_key_input(event):
 	if event.is_action_pressed("ui_cancel"):
-		print("Back button pressed")
 		if (current_scene.has_method("back")):
 			current_scene.back()
 
@@ -48,9 +48,6 @@ func update_progress():
 	var progress = float(loader.get_stage()) / loader.get_stage_count()
 	
 	get_node("/root/LoadingScreen/AnimationPlayer").seek(progress * length, true)
-
-	# Update your progress bar?
-	print("Loading scene progress: ", progress)
 	get_node("/root/LoadingScreen/CenterContainer/VBoxContainer/CenterContainer/Progress").value = progress
 
 func set_new_scene(scene_resource):
@@ -58,6 +55,7 @@ func set_new_scene(scene_resource):
 	get_node("/root/LoadingScreen/AnimationPlayer").play("fade_out")
 #	get_tree().get_root().remove_child(loading_scene)
 	get_node("/root").add_child(current_scene)
+	get_tree().paused = false
 
 
 
@@ -65,9 +63,10 @@ var scenes = {
 "main_menu": "res://game/main_menu/main_menu.tscn",
 "game": "res://Testing.tscn", 
 "new_game": "res://Testing.tscn",
-"load_game": "res://game/main_menu/load_game/load_game.tscn",
+"load_game": "res://game/load_save/load_game/load_game.tscn",
+"save_game": "res://game/load_save/save_game/save_game.tscn",
 "credits": "res://game/credits/Credits.tscn",
-"options": "res://Testing.tscn"
+"options": "res://game/load_save/save_game/save_game.tscn"
 }
 
 func switch_scene(name):

@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://game/pause_menu/pause_menu.gd" type="Script" id=1]
+[ext_resource path="res://game/theme.tres" type="Theme" id=2]
+
+[node name="Pause" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 3840, 2160 )
+color = Color( 0.176471, 0.282353, 0.243137, 0.647059 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -169.5
+margin_top = -236.0
+margin_right = 169.5
+margin_bottom = 236.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
+margin_right = 392.0
+margin_bottom = 472.0
+custom_constants/separation = 40
+
+[node name="Unpause" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_right = 392.0
+margin_bottom = 88.0
+theme = ExtResource( 2 )
+text = "Resume"
+
+[node name="Load" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 128.0
+margin_right = 392.0
+margin_bottom = 216.0
+theme = ExtResource( 2 )
+text = "Load game"
+
+[node name="Save" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 256.0
+margin_right = 392.0
+margin_bottom = 344.0
+theme = ExtResource( 2 )
+text = "Save game"
+
+[node name="Exit" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 384.0
+margin_right = 392.0
+margin_bottom = 472.0
+theme = ExtResource( 2 )
+text = "Exit to menu"
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/Unpause" to="." method="_on_Unpause_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/Load" to="." method="_on_Load_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]

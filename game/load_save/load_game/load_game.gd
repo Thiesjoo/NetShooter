@@ -1,12 +1,10 @@
 extends Node
 
-onready var placeholder_scene = preload("res://game/main_menu/load_game/placeholder.tscn")
+onready var placeholder_scene = preload("res://game/load_save/placeholder.tscn")
 var current = -1
 
 func _ready():
-	print(Global.games)
-	for i in Global.games.size():
-		add_item(Global.games[i], i)
+	reload()
 
 func _on_Load_pressed():
 	if (current > -1):
@@ -15,7 +13,7 @@ func _on_Load_pressed():
 
 func add_item(game, index):
 	var temp = placeholder_scene.instance()
-	temp.init(game)
+	temp.init(game, index)
 	temp.connect("clicked", self, "_on_clicked", [index])
 	temp.name = str(index)
 	add_child(temp)
@@ -25,3 +23,19 @@ func _on_clicked(id):
 		get_child(current).disable_highlight()
 	current = id
 	get_child(current).highlight()
+
+func reload():
+	print("reloading load_game")
+	delete_children()
+	if (Global.games.size() > 0):
+		for i in Global.games.size():
+			add_item(Global.games[i], i)
+	else:
+		var label = Label.new()
+		label.text = "No games found!"
+		add_child(label)
+
+func delete_children():
+	for n in get_children():
+		remove_child(n)
+		n.queue_free()

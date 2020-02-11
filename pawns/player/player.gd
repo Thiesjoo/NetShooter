@@ -1,6 +1,6 @@
 extends "../pawn.gd"
 
-var interacting = false
+export var interacting = false
 var navigation = []
 var camera = null
 var stopping = false
@@ -18,7 +18,6 @@ func _move_finished_callback():
 		$Pivot/AnimatedSprite.stop()
 		stopping = false
 	
-
 #Stop animation once key is removed
 func _input(_event):
 	if (Input.is_action_just_released("ui_left") || Input.is_action_just_released("ui_right") || Input.is_action_just_released("ui_up") || Input.is_action_just_released("ui_down")):
@@ -52,6 +51,11 @@ func _input(_event):
 	
 
 func _process(_delta):
+	#HACK: Very inefficient
+	if(get_tree().paused):
+		$Pivot/AnimatedSprite.stop()
+		return
+	
 	if (interacting):
 		$Pivot/AnimatedSprite.stop()
 		if (Input.is_action_pressed("ui_cancel")):

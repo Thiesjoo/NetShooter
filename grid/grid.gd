@@ -15,17 +15,23 @@ func _ready():
 		return
 	
 	extraFunc = preload("res://grid/mapgen/grid_func.gd").new()
-	add_child(extraFunc.add_trainer("Player", Vector2(200,200), PLAYER, 0, "player/player.gd"))
-	add_child(extraFunc.add_trainer("testing", Vector2(100,200), NPC, 4, "ai/staticNPC.gd"))
+	add_child(extraFunc.add_trainer("Player", Vector2(0,0), PLAYER, 0, "player/player.gd"))
+	add_child(extraFunc.add_trainer("testing", Vector2(0,1), NPC, 4, "ai/staticNPC.gd"))
 	
-
+	generate_map()
 	for child in get_children():
 		if ("type" in child):
 			# Set the child in the tilemap and auto center it
 			if (child.type != PLAYER):
 				set_cellv(world_to_map(child.position), child.type)
 			child.position = map_to_world(world_to_map(child.position)) + cell_size / 2
-	generate_map()
+
+func save_data():
+	var to_save = []
+	for child in get_children():
+		if ("type" in child):
+			to_save.push({"x": child.pos.x, "y": child.pos.y, "type": child.type })
+	return to_save
 	
 func generate_map():
 	var noise = OpenSimplexNoise.new()

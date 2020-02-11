@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/unknown.png-1012282359417b7b324d8119f3dd489f.stex"
+path="res://.import/kofi.png-5856758066979680974a3ba0f611fa70.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/main_menu/load_game/unknown.png"
-dest_files=[ "res://.import/unknown.png-1012282359417b7b324d8119f3dd489f.stex" ]
+source_file="res://addons/todo/kofi.png"
+dest_files=[ "res://.import/kofi.png-5856758066979680974a3ba0f611fa70.stex" ]
 
 [params]
 

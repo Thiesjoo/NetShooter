@@ -12,8 +12,8 @@ var cache := ConfigFile.new()
 
 func _ready() -> void:
 	# Keep the fullscreen toggle functional while the game is paused
-	pause_mode = Node.PAUSE_MODE_PROCESS
-
+	self.set_pause_mode(2)
+	
 	# Loads existing configuration (if any) for use anywhere
 	file.load(CONFIG_PATH)
 	cache.load(CONFIG_CACHE_PATH)

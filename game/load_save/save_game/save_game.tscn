@@ -1,0 +1,115 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fonts/Large_SemiBold.tres" type="DynamicFont" id=1]
+[ext_resource path="res://game/theme.tres" type="Theme" id=2]
+[ext_resource path="res://game/load_save/save_game/save_game.gd" type="Script" id=3]
+[ext_resource path="res://game/load_save/control.gd" type="Script" id=4]
+[ext_resource path="res://game/main_menu/assets/back_button.png" type="Texture" id=5]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 3840.0
+margin_bottom = 2160.0
+color = Color( 0.176471, 0.282353, 0.243137, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1125.0
+margin_top = -1031.5
+margin_right = 1125.0
+margin_bottom = 1031.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
+margin_right = 2250.0
+margin_bottom = 2063.0
+custom_constants/separation = 50
+
+[node name="Title" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_right = 2250.0
+margin_bottom = 175.0
+custom_fonts/font = ExtResource( 1 )
+text = "Save game"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 225.0
+margin_right = 2250.0
+margin_bottom = 1925.0
+rect_min_size = Vector2( 2250, 1700 )
+focus_next = NodePath("../CenterContainer/Load")
+focus_previous = NodePath("../../../Back")
+scroll_horizontal_enabled = false
+
+[node name="Games" type="VBoxContainer" parent="ColorRect/CenterContainer/VBoxContainer/ScrollContainer"]
+margin_right = 2250.0
+margin_bottom = 1700.0
+rect_min_size = Vector2( 2250, 1700 )
+focus_next = NodePath(".")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+script = ExtResource( 3 )
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_top = 1975.0
+margin_right = 2250.0
+margin_bottom = 2063.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/CenterContainer/VBoxContainer/CenterContainer"]
+margin_left = 733.0
+margin_right = 1516.0
+margin_bottom = 88.0
+custom_constants/separation = 100
+
+[node name="New" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+margin_right = 352.0
+margin_bottom = 88.0
+theme = ExtResource( 2 )
+text = "Create new"
+
+[node name="Save" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 452.0
+margin_right = 783.0
+margin_bottom = 88.0
+theme = ExtResource( 2 )
+text = "Save game"
+
+[node name="Back" type="TextureButton" parent="ColorRect"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 562.0
+margin_bottom = 562.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialog" type="ConfirmationDialog" parent="ColorRect"]
+margin_right = 523.0
+margin_bottom = 110.0
+dialog_text = "Are you sure you want to overwrite this save?"
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/New" to="ColorRect/CenterContainer/VBoxContainer/ScrollContainer/Games" method="_on_New_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/Save" to="ColorRect/CenterContainer/VBoxContainer/ScrollContainer/Games" method="_on_Save_pressed"]
+[connection signal="pressed" from="ColorRect/Back" to="." method="_on_Back_pressed"]
+[connection signal="confirmed" from="ColorRect/Dialog" to="ColorRect/CenterContainer/VBoxContainer/ScrollContainer/Games" method="_on_ConfirmationDialog_confirmed"]

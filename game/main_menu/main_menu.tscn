@@ -25,25 +25,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 margin_left = 120.0
 margin_top = 80.0
 margin_right = 3720.0
 margin_bottom = 2080.0
+color = Color( 0.176471, 0.282353, 0.243137, 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
+margin_right = 3600.0
+margin_bottom = 2000.0
 mouse_filter = 0
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/HBoxContainer"]
 margin_right = 700.0
 margin_bottom = 2000.0
 
-[node name="Logo" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+[node name="Logo" type="TextureRect" parent="ColorRect/HBoxContainer/VBoxContainer"]
 margin_right = 700.0
 margin_bottom = 129.0
 texture = ExtResource( 10 )
 stretch_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/HBoxContainer/VBoxContainer"]
 margin_top = 137.0
 margin_right = 700.0
 margin_bottom = 1792.0
@@ -52,7 +57,7 @@ custom_constants/separation = 30
 alignment = 1
 script = ExtResource( 8 )
 
-[node name="Continue" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Continue" type="RichTextLabel" parent="ColorRect/HBoxContainer/VBoxContainer/VBoxContainer"]
 margin_top = 152.0
 margin_right = 700.0
 margin_bottom = 352.0
@@ -67,7 +72,7 @@ text = "Continue
 scroll_active = false
 script = ExtResource( 7 )
 
-[node name="Load game" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Load game" type="RichTextLabel" parent="ColorRect/HBoxContainer/VBoxContainer/VBoxContainer"]
 margin_top = 382.0
 margin_right = 700.0
 margin_bottom = 582.0
@@ -82,7 +87,7 @@ text = "Load game
 scroll_active = false
 script = ExtResource( 2 )
 
-[node name="New game" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="New game" type="RichTextLabel" parent="ColorRect/HBoxContainer/VBoxContainer/VBoxContainer"]
 margin_top = 612.0
 margin_right = 700.0
 margin_bottom = 812.0
@@ -97,7 +102,7 @@ text = "New game
 scroll_active = false
 script = ExtResource( 6 )
 
-[node name="Credits" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Credits" type="RichTextLabel" parent="ColorRect/HBoxContainer/VBoxContainer/VBoxContainer"]
 margin_top = 842.0
 margin_right = 700.0
 margin_bottom = 1042.0
@@ -112,7 +117,7 @@ text = "Credits
 scroll_active = false
 script = ExtResource( 4 )
 
-[node name="Options" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Options" type="RichTextLabel" parent="ColorRect/HBoxContainer/VBoxContainer/VBoxContainer"]
 margin_top = 1072.0
 margin_right = 700.0
 margin_bottom = 1272.0
@@ -127,7 +132,7 @@ text = "Options
 scroll_active = false
 script = ExtResource( 3 )
 
-[node name="Exit" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Exit" type="RichTextLabel" parent="ColorRect/HBoxContainer/VBoxContainer/VBoxContainer"]
 margin_top = 1302.0
 margin_right = 700.0
 margin_bottom = 1502.0
@@ -142,7 +147,7 @@ text = "Exit
 scroll_active = false
 script = ExtResource( 5 )
 
-[node name="UpdateShit" parent="HBoxContainer/VBoxContainer" instance=ExtResource( 11 )]
+[node name="UpdateShit" parent="ColorRect/HBoxContainer/VBoxContainer" instance=ExtResource( 11 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
@@ -151,14 +156,14 @@ margin_right = 700.0
 margin_bottom = 2000.0
 rect_min_size = Vector2( 700, 200 )
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect/HBoxContainer"]
 margin_left = 708.0
 margin_right = 3600.0
 margin_bottom = 2000.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Characters" type="TextureRect" parent="HBoxContainer/CenterContainer"]
+[node name="Characters" type="TextureRect" parent="ColorRect/HBoxContainer/CenterContainer"]
 margin_left = 1179.0
 margin_top = 830.0
 margin_right = 1712.0
