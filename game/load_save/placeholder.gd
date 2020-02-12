@@ -3,7 +3,8 @@ extends Node
 signal clicked
 var mouse_over = false
 var current_index = -1
-export var temp = ""
+var current_save: Savegame = null
+#If the temp string is longer than 0, it will display the temp string
 
 func _input(event):
 	if Input.is_mouse_button_pressed(1):
@@ -11,10 +12,10 @@ func _input(event):
 			emit_signal("clicked")
 
 
-func init(game, index):
+func init(game: Savegame, index):
+	current_save = game
 	current_index = index
-	if ("temp" in game):
-		temp = "New save"
+	
 	var Title_node = $MarginContainer/VBoxContainer/TitleContainer/Title
 	var Date_node = $MarginContainer/VBoxContainer/Date
 	var Data_node = $MarginContainer/VBoxContainer/Player_data
@@ -23,17 +24,17 @@ func init(game, index):
 	if (game.thumbnail):
 		Thumbnail_node.texture = game.thumbnail
 		
-	Title_node.text = game.name
+	Title_node.text = game.save_name
 	
 	var date = OS.get_datetime_from_unix_time(game.last_modified)
 	Date_node.text = "Last modified: %s-%s-%s (DD-MM-YYYY)" % [date.day, date.month, date.year]
 	
 	#TODO: Make something sensible from this
-	if (temp.length() < 1):
-		date = OS.get_datetime_from_unix_time(game.created_at)
-		var date_string = "%s-%s-%s (DD-MM-YYYY)" % [date.day, date.month, date.year]
-		var data = "Seed: %s \nCreated at: %s" % [game.map_seed, date_string]
-		Data_node.text = data
+
+	date = OS.get_datetime_from_unix_time(game.created_at)
+	var date_string = "%s-%s-%s (DD-MM-YYYY)" % [date.day, date.month, date.year]
+	var data = "Seed: %s \nCreated at: %s" % [game.map.map_seed, date_string]
+	Data_node.text = data
 
 	
 func highlight():
@@ -52,10 +53,7 @@ func _on_Game_lost_focus():
 
 func _on_Title_text_entered(new_text):
 	if (new_text.length() > 1):
-		if (temp.length() > 0):
-			temp = new_text
-		else:
-			Global.games[current_index].name = new_text
+		current_save.save_name = new_text
 		var Title_node = $MarginContainer/VBoxContainer/TitleContainer/Title
 		Title_node.release_focus()
 	else:
@@ -67,5 +65,6 @@ func _on_Delete_pressed():
 	dialog.popup()
 
 func _on_DeleteDialog_confirmed():
-	Global.games.remove(current_index)
+	if (current_index <= Global.games.size()):
+		Global.games.remove(current_index)
 	get_parent().reload()

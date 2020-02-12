@@ -9,19 +9,37 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Map",
+"language": "GDScript",
+"path": "res://saves/map.gd"
+}, {
 "base": "",
 "class": "Pawn",
 "language": "GDScript",
 "path": "res://pawns/pawn.gd"
 }, {
+"base": "Node",
+"class": "Savegame",
+"language": "GDScript",
+"path": "res://saves/save.gd"
+}, {
 "base": "Area2D",
 "class": "StaticObject",
 "language": "GDScript",
 "path": "res://pawns/objects.gd"
+}, {
+"base": "Node",
+"class": "Trainer",
+"language": "GDScript",
+"path": "res://saves/trainer.gd"
 } ]
 _global_script_class_icons={
+"Map": "",
 "Pawn": "",
-"StaticObject": ""
+"Savegame": "",
+"StaticObject": "",
+"Trainer": ""
 }
 
 [application]

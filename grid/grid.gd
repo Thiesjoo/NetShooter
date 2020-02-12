@@ -15,7 +15,7 @@ func _ready():
 		return
 	
 	extraFunc = preload("res://grid/mapgen/grid_func.gd").new()
-	add_child(extraFunc.add_trainer("Player", Vector2(0,0), PLAYER, 0, "player/player.gd"))
+	add_child(extraFunc.add_trainer("Player", Global.game_data.player.position, PLAYER, 0, "player/player.gd"))
 	add_child(extraFunc.add_trainer("testing", Vector2(0,1), NPC, 4, "ai/staticNPC.gd"))
 	
 	generate_map()
@@ -37,7 +37,7 @@ func generate_map():
 	var noise = OpenSimplexNoise.new()
 
 	# Configure
-	noise.seed = Global.game_data.map_seed
+	noise.seed = Global.game_data.map.map_seed
 	noise.octaves = 1
 	noise.period = 30.0
 	noise.persistence = 0.8
@@ -91,11 +91,7 @@ func update_pawn_position(pawn, cell_start, cell_target):
 		set_cellv(cell_start, EMPTY)
 		set_cellv(cell_target, pawn.type)
 	return map_to_world(cell_target) + cell_size / 2
-#
-#func update_pawn(pawn, direction):
-#	var cell_start = world_to_map(pawn.position)
-#	var cell_target = cell_start + direction
-#	return update_pawn_position(pawn, cell_start, cell_target)
+
 	
 func remove_object(coords):
 	var object_pawn = get_cell_pawn(world_to_map(coords))
@@ -107,5 +103,3 @@ func get_coords(object, offset=Vector2(0,0)):
 
 func get_object(location):
 	return get_cellv(location)
-
-
