@@ -18,4 +18,4 @@ func _process(_delta: float) -> void:
 	fps = times.size()
 
 	# Display FPS in the label
-	text = str(fps) + " FPS " + str(Global.game_data.map.map_seed)
+	text = "FPS: %s, Seed: %s, Playerpos: %s" % [fps, Global.game_data.map.map_seed, Global.game_data.player.position/16]

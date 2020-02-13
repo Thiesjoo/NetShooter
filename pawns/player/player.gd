@@ -11,7 +11,7 @@ func _ready():
 	camera.zoom = Vector2(0.25, 0.25)
 	camera.current = true
 	add_child(camera)
-	connect("move_finished", self, "_move_finished_callback")
+	var _temp = connect("move_finished", self, "_move_finished_callback")
 
 func _move_finished_callback():
 	if stopping:
@@ -89,8 +89,10 @@ func _process(_delta):
 		print(target)
 		Grid.remove_object(target.pos)
 		move_to(input_direction, target.pos)
+		Global.game_data.player.position = target.pos
 	elif ("move" in target):
 		move_to(input_direction, target.pos)
+		Global.game_data.player.position = target.pos
 	elif ("bump" in target):
 		bump()
 

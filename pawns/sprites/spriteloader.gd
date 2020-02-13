@@ -13,7 +13,7 @@ func _ready():
 
 	var names = ["up", "left", "down", "right"]
 	for i in range(0,4):
-		aPlayer.add_animation(names[i], add_anim(i*3, hframes))
+		var _temp = aPlayer.add_animation(names[i], add_anim(i*3, hframes))
 
 	add_child(aPlayer)
 	aPlayer.playback_speed = playback_speed

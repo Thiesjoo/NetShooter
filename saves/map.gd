@@ -7,9 +7,9 @@ export var map_seed = 0
 export var explored_chunks = []
 export var trainers = [] 
 
-func _init(_map_seed = randi(), _explored_chunks=[Vector2(0,0)], _trainers=[]):
+func _init(_map_seed = randi(), _explored_chunks=[], _trainers=[]):
 	map_seed = _map_seed
-	trainers = _trainers
+	trainers = [Trainer.new("ya yeet", [], 0, Vector2(100,100)), Trainer.new("1ya yeet", [], 0, Vector2(100,200))]
 	explored_chunks = _explored_chunks
 	
 func clone():

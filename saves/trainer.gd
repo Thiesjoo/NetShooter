@@ -3,7 +3,9 @@ extends Node
 class_name Trainer
 var Self = load("res://saves/trainer.gd")
 
+
 export var npc_name: String = ""
+export var type = 1
 export var inventory: Array = [] #{item: {hp: 0, xp: 0, }}
 export var xp: int = 0 #Data gathered from sheet
 export var position = Vector2(0,0)

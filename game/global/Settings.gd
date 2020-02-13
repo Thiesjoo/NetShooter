@@ -15,8 +15,8 @@ func _ready() -> void:
 	self.set_pause_mode(2)
 	
 	# Loads existing configuration (if any) for use anywhere
-	file.load(CONFIG_PATH)
-	cache.load(CONFIG_CACHE_PATH)
+	var _temp = file.load(CONFIG_PATH)
+	_temp = cache.load(CONFIG_CACHE_PATH)
 
 	OS.window_fullscreen = bool(file.get_value("video", "fullscreen", false))
 
@@ -39,8 +39,10 @@ func set_fullscreen(fullscreen: bool) -> void:
 func set_setting(value, type, path):
 	file.set_value(path, type, value)
 
-func set_cache(value, type, path):
-	cache.set_value(path, type, value)
+func get_setting(type, path):
+	return file.get_value(type, path)
+	
+	
 
 # Saves configuration files with predefined paths.
 # This method should be used over `Settings.file.save(path)`

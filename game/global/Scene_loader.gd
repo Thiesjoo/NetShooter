@@ -4,16 +4,19 @@ var loader
 var wait_frames
 var time_max = 100 # msec
 var current_scene = null
-onready var loading_scene = preload("res://game/global/Loading.tscn").instance()
+#onready var loading_scene = pre
 
 func _ready():
 	self.set_pause_mode(2)
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
+	
 
-func _unhandled_key_input(event):
-	if event.is_action_pressed("ui_cancel"):
-		if (current_scene.has_method("back")):
+
+func _unhandled_input(event):
+	print(event)
+	if (current_scene.has_method("back")):
+		if event.is_action_pressed("ui_pause") or event.is_action_pressed("ui_cancel"):
 			current_scene.back()
 
 func _process(_delta):
@@ -73,6 +76,8 @@ func switch_scene(name):
 	call_deferred("_deferred_goto_scene", scenes[name])
 	
 func _deferred_goto_scene(path):
+	if (!get_node("/root/LoadingScreen")):
+		get_tree().get_root().add_child(load("res://game/global/Loading.tscn").instance())
 	loader = ResourceLoader.load_interactive(path)
 	if loader == null: # check for errors
 		OS.alert("Something went wrong with loading the scene")
@@ -80,6 +85,6 @@ func _deferred_goto_scene(path):
 	set_process(true)
 	# It is now safe to remove the current scene
 	current_scene.free()
-	get_tree().get_root().add_child(loading_scene)
+	current_scene = null
 	get_node("/root/LoadingScreen/AnimationPlayer").play("fade_in")
 	wait_frames = 20

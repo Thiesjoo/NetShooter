@@ -3,6 +3,7 @@ extends Node
 var games = []
 var game_data: Savegame
 var current_game_id: int = NAN
+enum NPC_TYPES {PLAYER=-1, STATIC, RANDOM}
 
 func _ready():
 	randomize()
@@ -25,13 +26,12 @@ func load_games_from_file():
 	games = []
 	save_game.open("user://savegame.save", File.READ)
 	while not save_game.eof_reached():
-		var current_line = parse_json(save_game.get_line())
-		if typeof(current_line) == TYPE_DICTIONARY:
+		var temp_line = save_game.get_line()
+		if (!temp_line.empty()):
+			var current_line = parse_json(temp_line)
 			var save = Savegame.new()
 			save.from_json(current_line)
 			games.append(save)
-		else:
-			print("Corrupt line")
 	sort_games()
 
 func save_game_to_file():
@@ -39,7 +39,6 @@ func save_game_to_file():
 	var save_game_file = File.new()
 	save_game_file.open("user://savegame.save", File.WRITE)
 	for game in games:
-		print("Saving game: ", game)
 		save_game_file.store_line(to_json(game.json()))
 	save_game_file.close()
 	print("Saved data to file")
@@ -53,7 +52,7 @@ func save_game_and_exit(scene):
 	if (game_data):
 		save_game()
 		game_data = null
-		current_game_id = NAN
+		current_game_id = -1
 		Scene_loader.switch_scene(scene)
 
 func save_game():

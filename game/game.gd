@@ -1,6 +1,7 @@
 extends Node
 
 func back():
+	print("BACK")
 	if (get_tree().paused):
 		if (!$UI/Pause.handle_back()):
 			unpause()

@@ -7,6 +7,9 @@ COLLECTABLE,
 TILE
 }
 var extraFunc
+const chunk_size = 32*16 #Chunks is 32 tiles and cell_size is 16
+
+
 
 func _ready():
 	if (!Global.game_data):
@@ -14,17 +17,19 @@ func _ready():
 		OS.alert("Something went wrong")
 		return
 	
-	extraFunc = preload("res://grid/mapgen/grid_func.gd").new()
+	extraFunc = MapGen.new(self, chunk_size)
 	add_child(extraFunc.add_trainer("Player", Global.game_data.player.position, PLAYER, 0, "player/player.gd"))
-	add_child(extraFunc.add_trainer("testing", Vector2(0,1), NPC, 4, "ai/staticNPC.gd"))
-	
-	generate_map()
+	for thingie in Global.game_data.map.trainers:
+		add_child(extraFunc.add_trainer(thingie.npc_name, thingie.position, NPC, 4, "ai/staticNPC.gd"))
+
+
 	for child in get_children():
 		if ("type" in child):
 			# Set the child in the tilemap and auto center it
 			if (child.type != PLAYER):
 				set_cellv(world_to_map(child.position), child.type)
 			child.position = map_to_world(world_to_map(child.position)) + cell_size / 2
+			
 
 func save_data():
 	var to_save = []
@@ -32,34 +37,14 @@ func save_data():
 		if ("type" in child):
 			to_save.push({"x": child.pos.x, "y": child.pos.y, "type": child.type })
 	return to_save
-	
-func generate_map():
-	var noise = OpenSimplexNoise.new()
 
-	# Configure
-	noise.seed = Global.game_data.map.map_seed
-	noise.octaves = 1
-	noise.period = 30.0
-	noise.persistence = 0.8
-	
-	var map_size = Vector2(500,500)
-
-	for x in map_size.x:
-		for y in map_size.x:
-			var a = noise.get_noise_2d(x,y)
-			if a < 0.3 and a > 0.05:
-#				print("Setting cell")
-				set_cellv(Vector2(x,y),6)
-			else:
-				set_cellv(Vector2(x,y), 5)
-	update_bitmask_region(Vector2(0,0), map_size)
-	
+func _process(_delta):
+	extraFunc.process(_delta)
 
 func get_cell_pawn(coordinates):
 	for node in get_children():
 		if world_to_map(node.position) == coordinates:
 			return(node)
-
 
 #Request move does nothing, expect returning what is in the next cell
 func request_move(pawn, direction):
@@ -92,7 +77,6 @@ func update_pawn_position(pawn, cell_start, cell_target):
 		set_cellv(cell_target, pawn.type)
 	return map_to_world(cell_target) + cell_size / 2
 
-	
 func remove_object(coords):
 	var object_pawn = get_cell_pawn(world_to_map(coords))
 	set_cellv(world_to_map(coords),  EMPTY)

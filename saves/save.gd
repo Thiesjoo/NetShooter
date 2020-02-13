@@ -17,7 +17,6 @@ func _init(_name = "New save", _map = Map.new(), _thumbnail = null, _created_at=
 	last_modified = _last_modified
 	created_at = _created_at
 	player = _player
-	print("Map: ", map, map.map_seed)
 
 
 func clone() -> Savegame:
@@ -27,9 +26,9 @@ func json() -> Dictionary:
 	return {"map": map.json(), "save_name": save_name, "created_at": created_at, "last_modified": last_modified, "player": player.json()}
 
 func from_json(save):
-	var map = Map.new()
+	map = Map.new()
 	map.from_json(save.map)
-	var player = Trainer.new()
+	player = Trainer.new()
 	player.from_json(save.player)
 	created_at = save.created_at
 	last_modified = save.last_modified
