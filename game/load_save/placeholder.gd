@@ -6,7 +6,7 @@ var current_index = -1
 var current_save: Savegame = null
 #If the temp string is longer than 0, it will display the temp string
 
-func _input(event):
+func _input(_event):
 	if Input.is_mouse_button_pressed(1):
 		if mouse_over == true:
 			emit_signal("clicked")

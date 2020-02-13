@@ -11,16 +11,21 @@ func _ready():
 
 func _on_Save_pressed():
 	if (current > -1):
-		if (current == Global.current_game_id or !Global.games.has(get_child(current).current_save) ):
+		if (current == Global.current_game_id):
+			#Save is current save
+			Global.save_game()
+			back()
+		elif( !Global.games.has(get_child(current).current_save) ):
+			#Save is new
 			print("Edited data and tried to save the game")
-			resave()
+			save_new_game()
 		else:
 			#Otherwise give a dialog about overwriting
 			get_node("../../../../Dialog").popup()
 	else:
 		OS.alert("Please select a slot")
 		
-func resave():
+func save_new_game():
 	Global.games.push_front(get_child(current).current_save)
 	Global.current_game_id = 0
 	Global.game_data = get_child(current).current_save

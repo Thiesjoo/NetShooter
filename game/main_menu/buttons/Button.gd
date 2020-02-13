@@ -25,6 +25,6 @@ func _on_mouse_exited():
 func _on_click(_meta):
 	pass
 
-func _gui_input(event):
+func _gui_input(_event):
 	if (Input.is_action_just_released("ui_accept")):
 		_on_click(null)
