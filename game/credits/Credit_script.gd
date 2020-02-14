@@ -1,4 +1,4 @@
-extends "credits.gd"
+extends Node
 
 const section_time := 2.0
 const line_time := 1.0
@@ -6,7 +6,7 @@ const base_speed := 75
 const speed_up_multiplier := 52.0
 const title_color := Color.blueviolet
 
-var scroll_speed := base_speed
+#var scroll_speed := base_speed
 var speed_up := false
 
 onready var line := $CreditsContainer/Line
@@ -31,16 +31,14 @@ var credits = [
 		"* Drones - Stephen Challener (Redshrike), hosted by OpenGameArt.org",
 		"* Map tiles from Alistair (https://fanart.pokefans.net/tutorials/mapping/tilesets)"
 	],[
-		"Music",
-		"Musician Name"
-	],[
-		"Sound Effects",
-		"SFX Name"
-	],[
+#		"Music",
+#		"Musician Name"
+#	],[
+#		"Sound Effects",
+#		"SFX Name"
+#	],[
 		"Testers",
-		"Name 1",
-		"Name 2",
-		"Name 3"
+		"Jacco v N",
 	],[
 		"Tools used",
 		"Developed with Godot Engine",
@@ -94,6 +92,10 @@ func finish():
 	if not finished:
 		finished = true
 		Scene_loader.switch_scene("main_menu")
+		
+func back():
+	if not finished:
+		Scene_loader.switch_scene("main_menu")
 
 func add_line():
 	var new_line = line.duplicate()
@@ -112,8 +114,6 @@ func add_line():
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"):
-		finish()
 	if event.is_action_pressed("ui_down") and !event.is_echo():
 		speed_up = true
 	if event.is_action_released("ui_down") and !event.is_echo():

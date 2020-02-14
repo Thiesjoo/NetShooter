@@ -13,7 +13,7 @@ func _ready():
 	
 
 func _unhandled_input(event):
-	if (current_scene.has_method("back")):
+	if (current_scene and current_scene.has_method("back")):
 		if event.is_action_pressed("ui_pause") or event.is_action_pressed("ui_cancel"):
 			current_scene.back()
 
@@ -61,21 +61,23 @@ func set_new_scene(scene_resource):
 
 
 var scenes = {
-"main_menu": "res://game/main_menu/main_menu.tscn",
-"game": "res://Testing.tscn", 
-"new_game": "res://Testing.tscn",
-"load_game": "res://game/load_save/load_game/load_game.tscn",
-"save_game": "res://game/load_save/save_game/save_game.tscn",
-"credits": "res://game/credits/Credits.tscn",
-"options": "res://game/load_save/save_game/save_game.tscn"
+	"main_menu": "res://game/main_menu/main_menu.tscn",
+	"game": "res://Testing.tscn", 
+	"new_game": "res://Testing.tscn",
+	"load_game": "res://game/load_save/load_game/load_game.tscn",
+	"save_game": "res://game/load_save/save_game/save_game.tscn",
+	"credits": "res://game/credits/Credits.tscn",
+	"options": "res://game/load_save/save_game/save_game.tscn"
 }
 
 func switch_scene(name):
+
 	call_deferred("_deferred_goto_scene", scenes[name])
 	
 func _deferred_goto_scene(path):
 	if (!has_node("/root/LoadingScreen")):
 		get_tree().get_root().add_child(load("res://game/global/Loading.tscn").instance())
+		
 	loader = ResourceLoader.load_interactive(path)
 	if loader == null: # check for errors
 		OS.alert("Something went wrong with loading the scene")
