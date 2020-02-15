@@ -84,6 +84,7 @@ func _deferred_goto_scene(path):
 		return
 	set_process(true)
 	# It is now safe to remove the current scene
+	print("Freeing ", current_scene)
 	current_scene.free()
 	current_scene = null
 	get_node("/root/LoadingScreen/AnimationPlayer").play("fade_in")

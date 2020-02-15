@@ -52,4 +52,5 @@ func vector_to_direction(dir):
 
 
 func _on_Player_area_entered(area):
-	print("Collided with: ", area)
+	pass
+#	print("Collided with: ", area)

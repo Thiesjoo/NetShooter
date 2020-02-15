@@ -69,7 +69,6 @@ func _process(_delta):
 		if ("interact" in target):
 			print("interacting")
 			interacting = true
-		return
 
 	#Otherwise, check input and act accordingly
 	var input_direction = get_input_direction()

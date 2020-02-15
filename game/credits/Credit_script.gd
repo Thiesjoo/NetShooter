@@ -6,7 +6,6 @@ const base_speed := 75
 const speed_up_multiplier := 52.0
 const title_color := Color.blueviolet
 
-#var scroll_speed := base_speed
 var speed_up := false
 
 onready var line := $CreditsContainer/Line

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://fonts/Large_SemiBold.tres" type="DynamicFont" id=1]
 [ext_resource path="res://game/theme.tres" type="Theme" id=2]
 [ext_resource path="res://game/load_save/save_game/save_game.gd" type="Script" id=3]
 [ext_resource path="res://game/load_save/control.gd" type="Script" id=4]
-[ext_resource path="res://game/main_menu/assets/back_button.png" type="Texture" id=5]
+[ext_resource path="res://game/global/assets/back_button.png" type="Texture" id=5]
+[ext_resource path="res://game/global/assets/back_button_focus.png" type="Texture" id=6]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -36,7 +37,8 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
-margin_right = 2250.0
+margin_left = 12.0
+margin_right = 2262.0
 margin_bottom = 2063.0
 custom_constants/separation = 50
 
@@ -101,6 +103,7 @@ margin_right = 562.0
 margin_bottom = 562.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 5 )
+texture_focused = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

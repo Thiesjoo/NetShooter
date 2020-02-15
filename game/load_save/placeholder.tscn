@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://game/load_save/unknown.png" type="Texture" id=1]
 [ext_resource path="res://fonts/OpenSansSemiBold.tres" type="DynamicFont" id=2]
@@ -6,14 +6,19 @@
 [ext_resource path="res://fonts/Small_SemiBold.tres" type="DynamicFont" id=4]
 [ext_resource path="res://game/global/assets/edit-icon.png" type="Texture" id=5]
 [ext_resource path="res://game/global/assets/delete-icon.png" type="Texture" id=6]
+[ext_resource path="res://game/global/assets/delete-icon-focus.png" type="Texture" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.678431, 0.741176, 0.254902, 0.345098 )
+
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [node name="Game" type="HBoxContainer"]
 margin_right = 2250.0
 margin_bottom = 400.0
 rect_min_size = Vector2( 2000, 400 )
+focus_mode = 2
 custom_constants/separation = 100
 script = ExtResource( 3 )
 __meta__ = {
@@ -57,7 +62,8 @@ margin_bottom = 88.0
 margin_right = 1400.0
 margin_bottom = 88.0
 rect_min_size = Vector2( 1400, 0 )
-custom_styles/normal = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
 custom_fonts/font = ExtResource( 4 )
 text = "????????"
 max_length = 100
@@ -84,6 +90,7 @@ margin_top = 20.0
 margin_right = 48.0
 margin_bottom = 68.0
 texture_normal = ExtResource( 6 )
+texture_focused = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -103,8 +110,10 @@ text = "?????????????????????
 ?????????????????????
 ?????????????????????
 ?????????????????????"
-[connection signal="mouse_entered" from="." to="." method="_on_Game_focus"]
-[connection signal="mouse_exited" from="." to="." method="_on_Game_lost_focus"]
+[connection signal="focus_entered" from="." to="." method="_on_Game_focus"]
+[connection signal="focus_exited" from="." to="." method="_on_Game_lost_focus"]
+[connection signal="mouse_entered" from="." to="." method="_on_Game_mouse"]
+[connection signal="mouse_exited" from="." to="." method="_on_Game_no_mouse"]
 [connection signal="text_entered" from="MarginContainer/VBoxContainer/TitleContainer/Title" to="." method="_on_Title_text_entered"]
 [connection signal="confirmed" from="MarginContainer/VBoxContainer/TitleContainer/CenterContainer/DeleteDialog" to="." method="_on_DeleteDialog_confirmed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TitleContainer/CenterContainer/Delete" to="." method="_on_Delete_pressed"]

@@ -41,6 +41,8 @@ custom_constants/separation = 40
 [node name="Unpause" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
 margin_right = 392.0
 margin_bottom = 88.0
+focus_next = NodePath("../Load")
+focus_previous = NodePath("../Exit")
 theme = ExtResource( 2 )
 text = "Resume"
 
@@ -48,6 +50,8 @@ text = "Resume"
 margin_top = 128.0
 margin_right = 392.0
 margin_bottom = 216.0
+focus_next = NodePath("../Save")
+focus_previous = NodePath("../Unpause")
 theme = ExtResource( 2 )
 text = "Load game"
 
@@ -55,6 +59,8 @@ text = "Load game"
 margin_top = 256.0
 margin_right = 392.0
 margin_bottom = 344.0
+focus_next = NodePath("../Exit")
+focus_previous = NodePath("../Load")
 theme = ExtResource( 2 )
 text = "Save game"
 
@@ -62,8 +68,11 @@ text = "Save game"
 margin_top = 384.0
 margin_right = 392.0
 margin_bottom = 472.0
+focus_next = NodePath("../Unpause")
+focus_previous = NodePath("../Save")
 theme = ExtResource( 2 )
 text = "Exit to menu"
+[connection signal="visibility_changed" from="." to="." method="_on_Pause_visibility_changed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/Unpause" to="." method="_on_Unpause_pressed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/Load" to="." method="_on_Load_pressed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/Save" to="." method="_on_Save_pressed"]

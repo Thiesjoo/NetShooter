@@ -28,7 +28,7 @@ func _ready():
 			# Set the child in the tilemap and auto center it
 			if (child.type != PLAYER):
 				set_cellv(world_to_map(child.position), child.type)
-			child.position = map_to_world(world_to_map(child.position)) + cell_size / 2
+		child.position = map_to_world(world_to_map(child.position)) + cell_size / 2
 			
 
 func save_data():

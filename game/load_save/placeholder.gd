@@ -1,15 +1,19 @@
 extends Node
 
-signal clicked
 var mouse_over = false
 var current_index = -1
 var current_save: Savegame = null
-#If the temp string is longer than 0, it will display the temp string
+var highlighted = false
 
 func _input(_event):
-	if Input.is_mouse_button_pressed(1):
-		if mouse_over == true:
-			emit_signal("clicked")
+	if Input.is_action_just_released("ui_accept"):
+		handle_input()
+
+func handle_input():
+	if (highlighted):
+		get_parent().submit(current_index)
+	else:
+		$Thumbnail.grab_focus()
 
 
 func init(game: Savegame, index):
@@ -35,21 +39,25 @@ func init(game: Savegame, index):
 	var date_string = "%s-%s-%s (DD-MM-YYYY)" % [date.day, date.month, date.year]
 	var data = "Seed: %s \nCreated at: %s" % [game.map.map_seed, date_string]
 	Data_node.text = data
+	
 
 	
 func highlight():
 	var Thumbnail_border = $Thumbnail/Border
 	Thumbnail_border.visible = true
+	highlighted = true
+	get_parent().current_highlight = current_index
 
 func disable_highlight():
 	var Thumbnail_border = $Thumbnail/Border
 	Thumbnail_border.visible = false
+	highlighted = false
 
 func _on_Game_focus():
-	mouse_over = true
+	highlight()
 
 func _on_Game_lost_focus():
-	mouse_over = false
+	disable_highlight()
 
 func _on_Title_text_entered(new_text):
 	if (new_text.length() > 1):
@@ -68,3 +76,10 @@ func _on_DeleteDialog_confirmed():
 	if (current_index <= Global.games.size()):
 		Global.games.remove(current_index)
 	get_parent().reload()
+
+
+func _on_Game_mouse():
+	mouse_over = true
+
+func _on_Game_no_mouse():
+	mouse_over = false
